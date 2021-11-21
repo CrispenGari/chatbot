@@ -1,0 +1,22 @@
+mutation ChatBotResponse($input: UserInput!) {
+  getResponse(input: $input) {
+    res {
+      question {
+        text
+      }
+      answer {
+        response
+      }
+      classification {
+        probability
+        intent
+        label
+      }
+      meta {
+        programmer
+        project
+        main
+      }
+    }
+  }
+}
