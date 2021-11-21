@@ -1,4 +1,55 @@
 .home {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
 }
 .home__chat {
+  background-color: white;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: 500px;
+  margin: 0px auto;
+  padding-right: 10px !important;
+}
+.home__chat > h1 {
+  width: 100%;
+  text-align: center;
+  font-size: 1rem;
+  padding: 10px 0;
+}
+.home__chat__messages {
+  flex: 1;
+  overflow: auto;
+}
+.home__chat > form {
+  width: 100%;
+  display: flex;
+  padding: 10px;
+  justify-content: space-between;
+  background-color: transparent;
+}
+.home__chat > form > textarea {
+  flex: 1;
+  resize: none;
+  outline: none;
+  border: 1px solid lightblue;
+  border-radius: 10px;
+  padding: 10px;
+  caret-color: cornflowerblue;
+  height: 20px;
+  overflow: hidden;
+}
+.home__chat > form > button {
+  padding: 8px 20px;
+  height: fit-content;
+  margin: 0px 10px;
+  cursor: pointer;
+  outline: none;
+  border: 1px solid gray;
+  color: white;
+  border-radius: 10px;
+
+  background-image: linear-gradient(to right, cornflowerblue, black);
 }

@@ -8,7 +8,7 @@ const Layout: React.FC<{}> = ({ children }) => {
     <div className={styles.layout}>
       <NextHead>
         <meta charSet="UTF-8" lang="eng" />
-        <title>Layout</title>
+        <title>chatbot</title>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
       </NextHead>
       <Header />

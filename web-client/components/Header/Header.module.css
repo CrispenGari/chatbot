@@ -7,6 +7,7 @@
   position: sticky;
   top: 0;
   padding: 20px;
+  border-bottom: 0.5px solid lightgray;
 }
 .header__left {
   display: flex;
@@ -14,4 +15,12 @@
 }
 .header__right {
   display: flex;
+}
+.header__left > h1,
+.header__right > h1 {
+  font-size: 1.2rem;
+  color: transparent;
+  width: fit-content;
+  background-clip: text;
+  background-image: linear-gradient(to right, cornflowerblue, black);
 }

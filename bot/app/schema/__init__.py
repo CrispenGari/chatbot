@@ -79,7 +79,7 @@ class Mutation(ObjectType):
 class Query(ObjectType):
     hello = String(required=True)
     
-    def resolve_hello():
+    def resolve_hello(root, args):
         return "hello world"
 
 schema = Schema(mutation=Mutation, query=Query)

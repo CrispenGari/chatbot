@@ -7,7 +7,7 @@ const Header: React.FC = () => {
         <h1>chatbot</h1>
       </div>
       <div className={styles.header__right}>
-        <h1>Frank bot</h1>
+        <h1>frank bot</h1>
       </div>
     </div>
   );

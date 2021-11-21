@@ -109,7 +109,7 @@ The following table show the `chatbot` model metrics that we obtained during tra
         <td>classification of intents by a chatbot.</td>
         <td>100.00%</td>
         <td>100.00%</td>
-        <td>100%</td>
+        <td>100.00%</td>
         <td>0.022</td>
         <td>0.161</td>
         <td>0.293</td>
