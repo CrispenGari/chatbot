@@ -1,0 +1,30 @@
+.message,
+.message__bot {
+  display: flex;
+  flex-direction: column;
+  width: fit-content;
+  min-width: 30%;
+  max-width: 70%;
+  color: white;
+  margin-top: 5px;
+}
+.message__text {
+  background-color: black;
+  border-radius: 5px;
+  color: white;
+  padding: 2px 3px;
+  font-size: 0.9rem;
+}
+.message > p,
+.message__bot > p {
+  display: flex;
+  justify-content: space-between;
+  color: gray;
+  font-size: 0.7rem;
+}
+.message {
+  margin-left: auto;
+}
+.message > .message__text {
+  background-image: linear-gradient(to right, black, cornflowerblue);
+}

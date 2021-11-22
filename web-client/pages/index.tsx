@@ -2,65 +2,83 @@ import { NextPage } from "next";
 import React from "react";
 import styles from "../styles/Home.module.css";
 import { useChatBotResponseMutation } from "../src/generated/graphql";
-import { useMutation, gql } from "@apollo/client";
+import Message from "../components/Message/Message";
+
+export interface MessageType {
+  user: string;
+  message: string;
+  time: string;
+}
 const Home: NextPage = () => {
   const [question, setQuestion] = React.useState("");
-  // const [askQn, { loading, data }] = useChatBotResponseMutation();
+  const [askQn, { loading }] = useChatBotResponseMutation();
+  const [messages, setMessages] = React.useState<MessageType[]>([]);
 
-  const [messages, setMessages] = React.useState([]);
-
-  const [askQn, { loading, data }] = useMutation(gql`
-    mutation ChatBotResponse($input: UserInput!) {
-      getResponse(input: $input) {
-        res {
-          question {
-            text
-          }
-          answer {
-            response
-          }
-          classification {
-            probability
-            intent
-            label
-          }
-          meta {
-            programmer
-            project
-            main
-          }
-        }
-      }
-    }
-  `);
   const askQuestion = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (!question) return;
-    await askQn({
+    setMessages((prev) => [
+      ...prev,
+      {
+        message: question,
+        user: "you",
+        time: `${
+          String(new Date().getHours()).length < 2
+            ? "0" + new Date().getHours().toString()
+            : new Date().getHours()
+        }:${
+          String(new Date().getMinutes()).length < 2
+            ? "0" + new Date().getMinutes().toString()
+            : new Date().getMinutes()
+        }`,
+      },
+    ]);
+    const { data } = await askQn({
       variables: {
         input: {
           text: question,
         },
       },
     });
+    if (data) {
+      setMessages((prev) => [
+        ...prev,
+        {
+          message: data?.getResponse?.res.answer.response,
+          user: "frank",
+          time: `${
+            String(new Date().getHours()).length < 2
+              ? "0" + new Date().getHours().toString()
+              : new Date().getHours()
+          }:${
+            String(new Date().getMinutes()).length < 2
+              ? "0" + new Date().getMinutes().toString()
+              : new Date().getMinutes()
+          }`,
+        },
+      ]);
+    }
+    setQuestion("");
+    window.document.querySelector("form").scrollIntoView({
+      behavior: "smooth",
+    });
   };
-
-  console.log(data, loading);
-
-  React.useEffect(() => {
-    (async () => {
-      await fetch("http://127.0.0.1:3001/hello")
-        .then((res) => res.json())
-        .then((d) => console.log(d))
-        .catch((e) => console.log(e));
-    })();
-  }, []);
   return (
     <div className={styles.home}>
       <div className={styles.home__chat}>
         <h1>chat with frank</h1>
-        <div className={styles.home__chat__messages}>messages</div>
-
+        <div className={styles.home__chat__messages}>
+          {messages.map((message, index) => {
+            return (
+              <Message
+                time={message.time}
+                message={message.message}
+                user={message.user}
+                key={index.toString()}
+              />
+            );
+          })}
+        </div>
         <form onSubmit={askQuestion}>
           <textarea
             placeholder="type a message"

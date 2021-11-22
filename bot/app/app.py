@@ -3,7 +3,7 @@ from flask_graphql import GraphQLView
 from schema import schema
 from flask_cors import cross_origin, CORS
 
-CORS(app)
+CORS(app, resources={r"/graphql/*": {"origins": "*"}}, supports_credentials=True)
 @app.route("/hello", methods=["GET"])
 def hello():
     return {
